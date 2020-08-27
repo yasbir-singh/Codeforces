@@ -57,3 +57,19 @@ int main(){
     }
     return 0;
 }
+
+
+
+/*
+  Explanation:
+       The solution is pretty simple. First we need to make such route that visits every cell exactly one time. It is not difficult:
+
+       Initially we stay in (1, 1) cell. Moving from left to right, we should reach (1, m) cell.
+       Move to the next line, in (2, m) cell. Moving from right to left, we should reach the most left sell of 2nd line, (2, 1).
+       Move to the next line. Repeat 1. and 2. while we have not all cells visited.
+                --------->
+                <---------
+                --------->
+
+      After that, we can easily find the solution: you can make first (k - 1) tubes length be 2, and the last k tube will consist from cells left.
+*/
