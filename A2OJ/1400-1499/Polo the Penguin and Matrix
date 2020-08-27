@@ -1,0 +1,48 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+int find(int mid, vector<int> v, int d){
+    int tot=0;
+    for(auto i:v){
+        tot = tot + abs(mid-i)/d;
+    }
+    return tot;
+}
+
+int main(){
+    int r, c, d, t; // r = row, c = column, d = difference // t is just temporary variable we will use it when we need an extra variavle.
+    cin >> r >> c >> d;
+    vector<int> v;
+    int flag=0;
+    
+    int rem;    // rem = remainder .
+    // we take one element to get the remainder and then check for all others
+    cin >> t;
+    v.push_back(t);     // dont forgot to put it in v.
+    rem = t%d;
+    
+    // mx is maximum input and initialize it with the input we took in last step.
+    int mx=t;
+    for(int i=1; i<r*c; i++){
+        cin >> t;
+        v.push_back(t);
+        if(t%d!=rem)flag=1;   // if we found different remainder then it is not gonna happen so just print -1
+        if(mx<t)mx = t;  // find max.
+    }
+    
+    if(flag==1){
+        cout << "-1";
+    } else {
+        int ans=INT_MAX, temp;
+        
+        // now we check all the integers which has same remainder, we can do this because our maximum input is 10000;
+        for(int i=1; i<=mx; i++){
+            if((mx-i)%d==0){
+                temp = find(i, v, d);
+                if(ans>temp)ans = temp;
+            }
+        }
+        cout << ans;
+    }
+}
+    
