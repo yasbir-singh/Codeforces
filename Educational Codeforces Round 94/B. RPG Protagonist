@@ -1,0 +1,51 @@
+                                                    // solve function in solution
+#include<bits/stdc++.h>
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+ 
+#define int long long
+#define nl "\n"
+#define pi 2*acos(0.0)
+ //------------------------------------------------------------  solution starts -----------------------------------------------------------------
+void solve(){
+    int max1, max2;
+    cin >> max1 >> max2;
+    int ns, nx;
+    cin >> ns >> nx;
+    int ws, wx;
+    cin >> ws >> wx;
+    if(ws>wx){
+        swap(ns, nx);
+        swap(ws, wx);
+    }
+    int ans=0;
+    
+    // brute force total number of "ws"(lighter one) first person will take,
+    //remaning will be "wx" and remaing for second person.
+    for(int s1=0; s1<=ns; s1++){
+        if(s1*ws > max1)continue;                                   // if limit of first person increase we just continue
+        int s2 = min(ns-s1, max2/ws);                               // min( ws(left), ws(he can take) ).
+        int left1 = max1 - s1*ws;
+        int left2 = max2 - s2*ws;
+        int x1 = min(left1/wx, nx);                                 // min( wx(he can take), wx(left) ).
+        int x2 = min(nx-x1, left2/wx);                              // min( wx(left), wx(he can take) ).
+        ans = max(ans, s1+s2+x1+x2);                                // maximize the answer.
+    }
+    cout << ans << nl;
+}
+  //------------------------------------------------------------  solution ends -----------------------------------------------------------------
+signed main(){
+    #ifdef LOCAL_MACHINE
+        freopen("input.txt", "rt", stdin);
+        freopen("output.txt", "wt", stdout);
+    #endif
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    int t=1;
+    cin >> t;
+    while(t--){
+        solve();
+    }
+    return 0;
+}
