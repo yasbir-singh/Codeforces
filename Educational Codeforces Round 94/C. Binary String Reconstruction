@@ -1,0 +1,69 @@
+#include<bits/stdc++.h>
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+ 
+#define int long long
+#define nl "\n"                                              // shortcut for new line
+#define pi 2*acos(0.0)
+
+
+                                                                // legal function is just checking if i is in domain of string or not.
+bool legal(int i, int l){
+    if(i>=0 && i<l) return true;
+    return false;
+}
+
+                                                                // after finding string this function checks string's credibility.
+bool crossCkh(string s, char w[], int l, int x){
+    for(int i=0; i<l; i++){
+        if(s[i]=='1'){
+            if(legal(i-x, l)  && w[i-x]=='1') continue;
+            if(legal(i+x, l)  && w[i+x]=='1') continue;
+            return false;
+        }
+    }
+    return true;
+}
+//---------------------------------------------------------solution starts-------------------------------------------------------------
+char w[100005];
+void solve(){
+    string s;
+    cin >> s;
+    int x, l;
+    cin >> x;
+    l = s.length();
+                                                        // initialise the "w" char array.
+    for(int i=0; i<l; i++){
+        w[i] = '1';
+    }
+    for(int i=0; i<l; i++){
+        if(s[i]=='0'){
+            if(legal(i-x, l))w[i-x]='0';
+            if(legal(i+x, l))w[i+x]='0';
+        }
+    }
+    
+                                                        // till here we have our ans now we just have to chk if this can reform "original string or not"
+    if(crossCkh(s, w, l, x)){
+        for(int i=0; i<l; i++)cout << w[i];
+        cout << nl;
+    } else {
+        cout << "-1" << nl;
+    }
+}
+ //---------------------------------------------------------solution ends-------------------------------------------------------------
+signed main(){
+    #ifdef LOCAL_MACHINE
+        freopen("input.txt", "rt", stdin);
+        freopen("output.txt", "wt", stdout);
+    #endif
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    int t=1;
+    cin >> t;
+    while(t--){
+        solve();
+    }
+    return 0;
+}
