@@ -1,0 +1,57 @@
+// u r a fuck boi remember this.
+ 
+#include<bits/stdc++.h>
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+ 
+#define int long long
+#define nl "\n"
+#define pi 2*acos(0.0)
+
+
+int arr[100005]={0};
+int dp[100005]={-1};
+
+//------------------------dp function---------------
+int fun(int i){ 
+    if(i<0) return 0;                                             // end case
+    if(dp[i]>=0) return dp[i];                                    // using stored values(memoisation)
+    if(i==0) return arr[i+1];
+    dp[i] = max(arr[i]+fun(i-3),arr[i+1]+fun(i-2));               // recursion + storing values
+    return dp[i];
+}
+//-----------------------dp function----------------
+//------------------------------------------------------------------solution starts-----------------------------------------------------------------
+void solve(){
+    int n, t, mx=0;                                               // mx = maximum, t = temporary.
+    cin >> n;
+    for(int i=0; i<n; i++){
+        cin >> t;
+        arr[t] = arr[t] + t;
+        if(t>mx)mx = t;
+    }
+                                                                  // initializing dp[] array to "-1"
+    for(int i=0; i<100005; i++){
+        dp[i] = -1;
+    }
+    
+    int ans=0;
+    ans = fun(mx);
+    cout << ans;
+}
+//----------------------------------------------------------------solution ends----------------------------------------------------------------------
+signed main(){
+    #ifdef LOCAL_MACHINE
+        freopen("input.txt", "rt", stdin);
+        freopen("output.txt", "wt", stdout);
+    #endif
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    int t=1;
+    //cin >> t;
+    while(t--){
+        solve();
+    }
+    return 0;
+}
