@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int n, i;
+map<int, bool> mp;
+ 
+int get(int x) {
+    return (x * (x + 1)) / 2;
+}
+ 
+int main() {
+
+    cin >> n;                                                               //     n = a(a+1)/2 +  b(b+1)/2.
+    for (i = 1; i <= n; ++i) {
+        if (get(i) <= n) {
+            mp[get(i)] = 1;
+        } else {
+            break;
+        }
+    }
+ 
+    for (i = 1; i <= n; ++i) {
+        if (get(i) > n) {
+            break;
+        }
+        if (mp[n - get(i)]) {
+            puts("YES");
+            return 0;
+        }
+    }
+ 
+    puts("NO");
+ 
+    return 0;
+}
