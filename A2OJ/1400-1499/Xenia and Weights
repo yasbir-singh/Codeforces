@@ -1,0 +1,62 @@
+// u r a fuck boi remember this.
+ 
+#include<bits/stdc++.h>
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+ 
+#define int long long
+#define nl "\n"
+#define pi 2*acos(0.0)
+#define setmin(x) memset((x),-1,sizeof((x)))
+
+vector<int> v, a;
+
+
+//-----------------------------------------------------------------recursion (no-dp)--------------------------------------------------------
+bool fun(int s1, int s2, int m, int lst){
+    if(s1>=s2 && (s1!=0 && s2!=0))return false;
+    if(m==0) return true;
+    bool flag=false;
+    for(int i=v.size()-1; i>=0; i--){
+        if(v[i]==lst)continue;
+        flag = flag || fun(s2, s1+v[i], m-1, v[i]);                             // always update s2 and swap
+        if(flag)a.push_back(v[i]);
+        if(flag)break;                                                          //  to avoid getting multiple answers mixup
+    }
+    return flag;
+}
+//-----------------------------------------------------------------recursion (no-dp) ends--------------------------------------------------------
+//-----------------------------------------------------------------solution starts--------------------------------------------------------
+void solve(){
+    char c;
+    for(int i=1; i<=10; i++){
+        cin >> c;
+        if(c=='1')v.push_back(i);
+    }
+    int m;
+    cin >> m;
+    bool ans;
+    ans = fun(0, 0, m, 0);
+    if(ans){cout << "YES" << nl;// << a.size();
+        for(int i=m-1; i>=0; i--){                                          //printing from end because last element goes first
+            cout << a[i] << " ";
+        }
+    }
+    else cout << "NO" << nl;
+}
+//-----------------------------------------------------------------solution ends--------------------------------------------------------
+signed main(){
+    #ifdef LOCAL_MACHINE
+        freopen("input.txt", "rt", stdin);
+        freopen("output.txt", "wt", stdout);
+    #endif
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    int t=1;
+    //cin >> t;
+    while(t--){
+        solve();
+    }
+    return 0;
+}
