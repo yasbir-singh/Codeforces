@@ -1,0 +1,52 @@
+// u r a fuck boi remember this.
+ 
+#include<bits/stdc++.h>
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+ 
+#define int long long
+#define nl "\n"
+#define pi 2*acos(0.0)
+#define setmin(x) memset((x),-1,sizeof((x)))
+
+ //--------------------------------------------------------<solution>----------------------------------------------
+void solve(){
+    int n, p, f[55];
+    cin >> n >> p;
+    int a[55], t;
+    for(int i=0; i<n; i++){
+        cin >> a[i] >> t;
+        a[i] = a[i]*100-t;
+    }
+    sort(a, a+n);
+    f[n-1]=1;
+    for(int i=n-2; i>=0; i--){
+        if(a[i]<a[i+1]){
+            f[i] = n-i;
+        } else {
+            f[i] = f[i+1];
+        }
+    }
+    int ans=0;
+    for(int i=0; i<n; i++){
+        if(f[i]==f[n-p])ans++;
+    }
+    
+    cout << ans;
+}
+ //--------------------------------------------------------</solution>----------------------------------------------
+signed main(){
+    #ifdef LOCAL_MACHINE
+        freopen("input.txt", "rt", stdin);
+        freopen("output.txt", "wt", stdout);
+    #endif
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    int t=1;
+    //cin >> t;
+    while(t--){
+        solve();
+    }
+    return 0;
+}
