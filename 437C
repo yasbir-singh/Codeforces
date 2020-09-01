@@ -1,0 +1,41 @@
+// u r a fuck boi remember this.
+ 
+#include<bits/stdc++.h>
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+ 
+#define int long long
+#define nl "\n"
+#define pi 2*acos(0.0)
+#define setmin(x) memset((x),-1,sizeof((x)))
+
+ //--------------------------------------------------------<solution>----------------------------------------------
+void solve(){
+    int n, k, a[1001];
+    cin >> n >> k;
+    for(int i=1; i<=n ;i++){
+        cin >> a[i];
+    }
+    int ans=0, x, y;
+    for(int i=0; i<k; i++){
+        cin >> x >> y;
+        ans = ans + min(a[x], a[y]);
+    }
+    cout << ans;
+}
+ //--------------------------------------------------------</solution>----------------------------------------------
+signed main(){
+    #ifdef LOCAL_MACHINE
+        freopen("input.txt", "rt", stdin);
+        freopen("output.txt", "wt", stdout);
+    #endif
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    int t=1;
+    //cin >> t;
+    while(t--){
+        solve();
+    }
+    return 0;
+}
