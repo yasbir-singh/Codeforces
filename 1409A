@@ -1,0 +1,33 @@
+// u r a fuck boi remember this.
+ 
+#include<bits/stdc++.h>
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+ 
+#define int long long
+#define nl "\n"
+#define pi 2*acos(0.0)
+#define setmin(x) memset((x),-1,sizeof((x)))
+
+ //--------------------------------------------------------<solution>----------------------------------------------
+void solve(){
+    int a, b;
+    cin >> a >> b;
+    cout << (abs(a-b)+9)/10 << nl;
+}
+ //--------------------------------------------------------</solution>----------------------------------------------
+signed main(){
+    #ifdef LOCAL_MACHINE
+        freopen("input.txt", "rt", stdin);
+        freopen("output.txt", "wt", stdout);
+    #endif
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    int t=1;
+    cin >> t;
+    while(t--){
+        solve();
+    }
+    return 0;
+}
