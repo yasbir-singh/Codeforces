@@ -1,0 +1,41 @@
+// u r a fuk boi.
+ 
+#include<bits/stdc++.h>
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+ 
+#define int long long
+#define nl "\n"
+#define pi 2*acos(0.0)
+ //----------------------------------------------------<solution>--------------------------------------------------
+void solve(){
+    int a, b, x, y, n;                                           // make smallest the smaller one and if moves left make smaller the other one
+    cin >> a >> b >> x >> y >> n;
+    int t1, t2, n1, n2;                                         // n1 = remaning moves in first case, n2 = remaning moves in second case
+    
+    t1 = max(y, b-n);
+    n1 = n-(b-t1);
+    t1 = (max(a-n1, x))*t1;
+    
+    t2 = max(x, a-n);
+    n2 = n-(a-t2);
+    t2 = (max(y, b-n2))*t2;
+    
+    cout << min(t1, t2) << nl;
+}
+ //----------------------------------------------------</solution>--------------------------------------------------
+signed main(){
+    #ifdef LOCAL_MACHINE
+        freopen("input.txt", "rt", stdin);
+        freopen("output.txt", "wt", stdout);
+    #endif
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    int t=1;
+    cin >> t;
+    while(t--){
+        solve();
+    }
+    return 0;
+}
